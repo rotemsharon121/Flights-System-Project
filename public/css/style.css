@@ -1,0 +1,29 @@
+/* background image of the Navbar and the hero */
+#navAndHero {
+    background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7)), url(/public/img/world-map.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Transparent hero background */
+.main-header {
+    background-color: transparent;
+}
+
+.navbar-light {
+    background-color: rgba(136, 0, 255, 0.1);
+}
+
+/* round Navbar buttons */
+.nav-link {
+    border-radius: 30%;
+}
+
+.nav-link:hover {
+    background-color: azure;
+}
+
+.nav-link.active {
+    background-color: violet;
+}

@@ -1,0 +1,40 @@
+What's going on?
+This short explanation here will make it clear to you why mySQL'S libraries has connecting problems and how it can be solved and also how to return the situation to the default
+
+Let's first make it clear what's going on.
+
+In MySQL 8, the authentication system has changed to support pluggable authentication methods. By default, a new method called caching_sha2_password is used instead of the traditional mysql_native_password.
+
+This new default can cause compatibility issues with certain applications or tools that expect the old authentication method, leading to errors like:
+
+!!! Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; !!!
+
+How to solve this?
+
+To fix this issue, you need to switch the authentication method for your MySQL user (e.g., root) back to mysql_native_password. You can do this by logging into MySQL and running the following command:
+
+*'root'- refers to your user name
+*'localhost'- refers to your connection name
+*'your_password_here'- refers to your password
+
+*********************************************************************************************
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password_here';
+*********************************************************************************************
+
+Security Concerns:
+
+⚠️ Note: Using mysql_native_password is less secure compared to caching_sha2_password. It has a higher risk of exposure to password attacks, so use this solution only if necessary.
+
+Restoring the default authentication method:
+
+If you want to revert back to the more secure caching_sha2_password method later, you can use the following command:
+
+*'root'- refers to your user name
+*'localhost'- refers to your connection name
+*'your_password_here'- refers to your password
+
+*********************************************************************************************
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'your_password_here';
+*********************************************************************************************
+
+This will restore the default authentication method, providing enhanced security.

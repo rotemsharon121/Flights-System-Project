@@ -1,0 +1,14 @@
+insert into customers (id, First_name, Last_name, Address, Phone_number, Credit_card_number, User_name, User_password)
+values 
+(1, 'Nisim', 'Mizrahi', '127 hertzel Street, Rehovot, IL', '555-123-4567', '4111 1111 1111 1111', 'nisimmizrahi', 'A1B2'),
+(2, 'Emma', 'Johnson', '456 Oak Avenue, New York, NY', '555-234-5678', '4222 2222 2222 2222', 'emmajohnson', 'C3D4'),
+(3, 'Michael', 'Brown', '789 Maple Lane, Los Angeles, CA', '555-345-6789', '4333 3333 3333 3333', 'michaelbrown', 'E5F6'),
+(4, 'Sophia', 'Davis', '321 Pine Drive, Miami, FL', '555-456-7890', '4444 4444 4444 4444', 'sophiadavis', 'G7H8'),
+(5, 'James', 'Wilson', '654 Cedar Road, Austin, TX', '555-567-8901', '4555 5555 5555 5555', 'jameswilson', 'J9K1'),
+(6, 'Olivia', 'Martinez', '987 Birch Court, Seattle, WA', '555-678-9012', '4666 6666 6666 6666', 'oliviamartinez', 'L2M3'),
+(7, 'Liam', 'Anderson', '159 Spruce Street, Denver, CO', '555-789-0123', '4777 7777 7777 7777', 'liamanderson', 'N4P5'),
+(8, 'Isabella', 'Garcia', '753 Willow Boulevard, Chicago, IL', '555-890-1234', '4888 8888 8888 8888', 'isabellagarcia', 'Q6R7'),
+(9, 'Ethan', 'White', '135 Ash Street, Boston, MA', '555-901-2345', '4999 9999 9999 9999', 'ethanwhite', 'S8T9'),
+(10, 'Ava', 'Taylor', '246 Birch Road, Portland, OR', '555-012-3456', '5111 1111 1111 1111', 'avataylor', 'U7V3'),
+(11, 'Noah', 'Clark', '357 Redwood Avenue, Phoenix, AZ', '555-123-4568', '5222 2222 2222 2222', 'noahclark', 'X4Y5'),
+(12, 'Mia', 'Lewis', '468 Cypress Lane, Atlanta, GA', '555-234-5679', '5333 3333 3333 3333', 'mialewis', 'Z6A2');

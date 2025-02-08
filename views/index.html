@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Sky</title>
+    <link rel="icon" href="/public/img/favicon.ico">
+    <link href="/public/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar and Hero -->
+    <div class="container-fluid p-0" id="navAndHero">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="/" class="navbar-brand p-0">
+                <h1 class="text-info m-0">
+                    <img src="/public/img/blue-sky-high-resolution-color-logo.png" alt="Logo" style="max-height: 45px;">
+                    </i>Blue sky
+                </h1>
+                <p class="text-primary">flights management system</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="bi bi-menu-down"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Flights</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="/flights" class="dropdown-item">All flights</a>
+                            <a href="/flights/flight_search" class="dropdown-item">Flight search</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Airlines</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="/airlineCompanies" class="dropdown-item">All airlines</a>
+                            <a href="/airlineCompanies/airline_search" class="dropdown-item">Airline search</a>
+                        </div>
+                    </div>
+                    <a href="/customers" class="nav-item nav-link">Customers</a>
+                    <a href="/user_page" class="nav-item nav-link">User page</a>
+                </div>
+                <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register/ login</a>
+            </div>
+        </nav>
+
+        <div class="container-fluid py-5 mb-5 main-header">
+            <div class="container py-5">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                        <h1 class="text-primary ">welcome to Blue sky</h1>
+                        <p class="fs-3 text-white">
+                            The main goal of the project is to create a system that will assist in managing all
+                            processes related to the aviation traffic system in a centralized and efficient way. This
+                            includes the management of airlines companies, flights details, tickets management, and
+                            customers information.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar and Hero -->
+
+
+    <!-- Content -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="/public/img/airplan.jpg"
+                            alt="airplane" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-primary bi bi-arrow-right-square-fill" style="text-decoration: underline;">
+                        Summary of the project</h6>
+                    <h1 class="mb-4">flights management system
+                        project</h1>
+                    <p class="mb-4">
+                        With the tools that the project will provide you, you will be able to apply actions on the
+                        following sections:<br>
+                    <div class="row gy-2 gx-4 mb-4">
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Airline companies</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Flights</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Tickets</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Customers</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Countries</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="bi bi-pencil text-success me-2"></i>Admins</p>
+                        </div>
+                    </div>
+                    <p>the actions you can apply:</p>
+                    <ul>
+                        <li>look for a specific data</li>
+                        <li>add data</li>
+                        <li>update data</li>
+                        <li>delete data</li>
+                    </ul>
+                    </p>
+                    <p class="mb-0"><i class="bi bi-asterisk text-success me-2"></i>All data is stored in a mysql
+                        database</p>
+                    <div class="row gy-2 gx-4 mb-4">
+                        <p class="mb-4">
+                        <h6><i class="bi bi-check-circle-fill text-success me-2"></i>The client side is created with
+                        </h6>
+                        <p class="text-primary">Html, Css, Javascript, bootstrap and bootstrap-icons</p>
+                        <h6><i class="bi bi-check-circle-fill text-success me-2"></i>The server side is created with
+                        </h6>
+                        <p class="text-primary">node.js, express.js, express.router</p>
+                        <h6><i class="bi bi-check-circle-fill text-success me-2"></i>I connected to the database using
+                            libraries</h6>
+                        <p class="text-primary">knex, mysql, mysql2</p>
+                        <h6><i class="bi bi-check-circle-fill text-success me-2"></i>To encrypt the passwords i used a
+                            library bcrypt</h6><br>
+                        <h6><i class="bi bi-check-circle-fill text-success me-2"></i>The site was built in architecture
+                            mvc- model, view, controller</h6>
+                        </p>
+                        <a class="btn btn-primary py-3 px-5 mt-2" href="/about">Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-10 text-center mx-auto">
+                    <h1 class="text-danger">importent!</h1>
+                    <h1 class="text-primary">Configuration</h1>
+                    <div class="mb-4 text-start fs-5">
+                        <p>The project includes essential configuration files that serve as the foundation for
+                            the system's setup and testing.
+                            <br>
+                            These files include:
+                        </p>
+                        <p><span style="text-decoration: underline;">Task File: </span>
+                            Describes the project tasks that was requirement, which
+                            served as a work plan for building the project.
+                        <div class="text-center m-5">
+                            <a href="../config/final_project_flights.docx" download="final_project_flights.docx">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-download"></i> Download Tesk File</button></a>
+                        </div>
+                        </p>
+                        <p><span style="text-decoration: underline;">SQL Database File: </span>
+                            Includes the database structure, tables, relationships, and initial
+                            data (seed data) for setting up the database.
+                        <div class="text-center m-5">
+                            <a href="/config/SQL_configuration/Full ‏‏flights system database.sql"
+                                download="flights system database.sql">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-download"></i> SQL Database File</button></a>
+                            <a href="/config/SQL_configuration/Full ‏‏flights system database text file.txt"
+                                download="flights system database text file.txt">
+                                <button type="button" class="btn btn-warning">
+                                    <i class="bi bi-download"></i> SQL Database File.txt</button></a>
+                        </div>
+                        </p>
+                        <p><span style="text-decoration: underline;">Authorization Issue Handling: </span>
+                            This file documents the configurations and solutions for
+                            resolving access (authorization) issues in mySQL database. the file provides steps to resolve the issue, such
+                            as modifying permissions
+                            in the database or updating the server configuration file.
+                        <div class="text-center m-5">
+                            <a href="/config/SQL_configuration/Authentication/MySQL_Authentication_Issue_Fix.txt"
+                                download="MySQL_Authentication_Issue_Fix.txt">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-download"></i> Download Authorization Issue Handling
+                                    File</button></a>
+                        </div>
+                        </p>
+                        These files ensure that every step in the project's development, testing, and maintenance is
+                        clear, organized, and accessible for reference.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+
+    <!-- Footer -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2"><i class="bi bi-person-fill me-3"></i>Rotem Sharon</p>
+                    <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>Rehovot, Israel</p>
+                    <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>rotemsharon121@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                            href="https://www.linkedin.com/in/rotem-sharon-66924b271/">
+                            <i class="bi bi-linkedin"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                            href="https://github.com/rotemsharon121">
+                            <i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+
+
+    <!-- Template Javascript -->
+    <script src="/public/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

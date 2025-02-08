@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Sky</title>
+    <link rel="icon" href="/public/img/favicon.ico">
+    <link href="/public/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar and Hero-->
+    <div class="container-fluid p-0" id="navAndHero">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="/" class="navbar-brand p-0">
+                <h1 class="text-info m-0">
+                    <img src="/public/img/blue-sky-high-resolution-color-logo.png" alt="Logo" style="max-height: 45px;">
+                    </i>Blue sky
+                </h1>
+                <p class="text-primary">flights management system</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="bi bi-menu-down"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/about" class="nav-item nav-link active">About</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Flights</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="/flights" class="dropdown-item">All flights</a>
+                            <a href="/flights/flight_search" class="dropdown-item">Flight search</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Airlines</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="/airlineCompanies" class="dropdown-item">All airlines</a>
+                            <a href="/airlineCompanies/airline_search" class="dropdown-item">Airline search</a>
+                        </div>
+                    </div>
+                    <a href="/customers" class="nav-item nav-link">Customers</a>
+                    <a href="/user_page" class="nav-item nav-link">User page</a>
+                </div>
+                <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register/ login</a>
+            </div>
+        </nav>
+
+        <div class="container-fluid py-5 mb-5 main-header">
+            <div class="container py-5">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                        <h1 class="text-primary">About</h1>
+                        <p class="fs-3 text-white">
+                            the project was developed by Rotem Sharon a 28 year old web developer as a final project
+                            for his full stack studies. The project includes front end (client side) and back end
+                            (server side), and connected to a database
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar and Hero -->
+
+    <!-- Content -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <h1 class="section-title bg-white text-start text-primary pe-3">About the project</h1>
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="/public/img/frontend image.jpg"
+                            alt="frontend image" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+
+                    <h1 class="mb-4">front end - <span class="text-primary">client side</span></h1>
+                    <p class="mb-4">
+                        To improve the visual design of the website, I used CSS and Bootstrap.<br>With CSS I styled the
+                        HTML pages in a modern way and I used Bootstrap for buttons, menus, tables, and the overall
+                        layout of the site. I also include JavaScript to add animations to the UI components,
+                        providing a smooth and intuitive user experience.
+                    </p>
+                </div>
+
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="/public/img/backend image.png"
+                            alt="database image" style="object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h1 class="mb-4">back end - <span class="text-primary">server side</span></h1>
+                    <p class="mb-4">
+                        The back end of the site is built using Node.js and Express.js, providing a strong and efficient
+                        server-side framework. I apply Express Router to manage the routing of different endpoints
+                        ensuring a clear and organized structure for the application's various routes.<br>The site is
+                        developed following the MVC (Model-View-Controller) architecture, which helps keep the code
+                        organized by separating the data, the user interface, and the logic. This architecture
+                        assist easy maintenance and scalability, as the
+                        data management (Model), user interface (View), and application logic (Controller) are all
+                        handled independently yet cohesively.
+                    </p>
+                </div>
+
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="/public/img/database image.jpeg"
+                            alt="backend image" style="object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h1 class="text-primary">data base</h1>
+                    <p class="mb-4">
+                        All data for the site is stored in a MySQL database, ensuring reliable and structured data
+                        management. I connected to the database using libraries such as Knex, MySQL, and MySQL2, which
+                        provided a seamless interface for querying and managing the database. Knex was particularly
+                        useful for building and executing SQL queries in a flexible and efficient manner, while MySQL
+                        and MySQL2 improve the connection and interaction with the database, ensuring smooth data
+                        searching and storage operations throughout the application.
+                    </p>
+                </div>
+                <h1 class="section-title bg-white text-start text-primary pe-3">About the developer</h1>
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="/public/img/IMG_20180721_145003.jpg"
+                            alt="developer image" style="object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h1 class="text-primary">Rotem Sharon</h1>
+                    <p class="mb-4">
+                        My name is Rotem Sharon and i a full stack developer from Israel,
+                        I am specializing in back end development and database management.<br>
+                        With a strong foundation in server-side technologies and data handling,
+                        I also have a solid understanding of front end development,
+                        making me a developer capable of handling both sides of the web development process -
+                        server side and client side.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+
+    <!-- Footer -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2"><i class="bi bi-person-fill me-3"></i>Rotem Sharon</p>
+                    <p class="mb-2"><i class="bi bi-geo-alt-fill me-3"></i>Rehovot, Israel</p>
+                    <p class="mb-2"><i class="bi bi-envelope-at-fill me-3"></i>rotemsharon121@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                            href="https://www.linkedin.com/in/rotem-sharon-66924b271/">
+                            <i class="bi bi-linkedin"></i></a>
+                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2"
+                            href="https://github.com/rotemsharon121">
+                            <i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+
+    <!-- Template Javascript -->
+    <script src="/public/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
