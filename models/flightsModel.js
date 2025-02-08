@@ -9,19 +9,19 @@ const getFlightById = (params) => {
 
     let flight = knex.select('*').from('flights')
 
-    if (params.Origin_contry_id) {
+    if (params.Origin_contry_id !== 'no-data') {
         flight = flight.where('Origin_contry_id', params.Origin_contry_id)
     }
 
-    if (params.Destination_country_id) {
+    if (params.Destination_country_id !== 'no-data') {
         flight = flight.where('Destination_country_id', params.Destination_country_id)
     }
 
-    if (params.Departure_time) {
+    if (params.Departure_time !== 'no-data') {
         flight = flight.whereRaw('DATE(Departure_time) = ?', [params.Departure_time])
     }
 
-    if (params.Landing_time) {
+    if (params.Landing_time !== 'no-data') {
         flight = flight.whereRaw('DATE(Landing_time) = ?', [params.Landing_time])
     }
 
