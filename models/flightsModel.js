@@ -5,7 +5,7 @@ const getAllFlights = () => {
     return flights
 }
 
-const getFlightById = (params) => {
+const getFlightByParams = (params) => {
 
     let flight = knex.select('*').from('flights')
 
@@ -62,7 +62,7 @@ const removeFlight = (id) => {
 
 module.exports = {
     getAllFlights,
-    getFlightById,
+    getFlightByParams,
     addFlight,
     updateFlight,
     removeFlight

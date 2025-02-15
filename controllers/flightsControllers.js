@@ -1,23 +1,23 @@
 const { getAllFlights,
-    getFlightById,
+    getFlightByParams,
     addFlight,
     updateFlight,
     removeFlight } = require('../models/flightsModel')
 
-const { getCountryByName, getCountryById } = require('../models/countriesModel')
+const { getCountryByName, getCountryById, isCounrtyExist } = require('../models/countriesModel')
 const { getAirlineCompaniesById } = require('../models/airlineCompaniesModel')
 
 const flightsTableFixer = (allFlights) => {
-            const updatedFlights = Promise.all(allFlights.map(async (flight) => {
-                const originCountryName = await getCountryById(flight.Origin_contry_id)
-                flight.Origin_contry_id = originCountryName[0].Name
-                const destinationCountryName = await getCountryById(flight.Destination_country_id)
-                flight.Destination_country_id = destinationCountryName[0].Name
-                const airlineCompany = await getAirlineCompaniesById(flight.Airline_company_id)
-                flight.Airline_company_id = airlineCompany[0][0].Company_name
-                return flight
-            }))
-    
+    const updatedFlights = Promise.all(allFlights.map(async (flight) => {
+        const originCountryName = await getCountryById(flight.Origin_contry_id)
+        flight.Origin_contry_id = originCountryName[0].Name
+        const destinationCountryName = await getCountryById(flight.Destination_country_id)
+        flight.Destination_country_id = destinationCountryName[0].Name
+        const airlineCompany = await getAirlineCompaniesById(flight.Airline_company_id)
+        flight.Airline_company_id = airlineCompany[0][0].Company_name
+        return flight
+    }))
+
     return updatedFlights
 }
 
@@ -41,23 +41,40 @@ const getAllFlightsController = (req, res) => {
 const getFlightByParamsController = async (req, res) => {
 
     if (req.params.origin !== 'no-data') {
-        const getOriginCountry = await getCountryByName(req.params.origin)
-        req.params.origin = getOriginCountry[0].id}
+        const countryExistChacker = await isCounrtyExist(0, req.params.origin)
+        if (countryExistChacker === true) {
+            const getOriginCountry = await getCountryByName(req.params.origin)
+            req.params.origin = getOriginCountry[0].id
+        } else {
+            console.log(`ERROR The user searched for a country that does not exist ${req.params.origin}`)
+            // res.status(404)
+            return res.json(`ERROR origin country does not exist`)}
+    }
+
     if (req.params.destination !== 'no-data') {
-        const getDestinationCountry = await getCountryByName(req.params.destination)
-        req.params.destination = getDestinationCountry[0].id}
+        const countryExistChacker = await isCounrtyExist(0, req.params.destination)
+        if (countryExistChacker === true) {
+            const getDestinationCountry = await getCountryByName(req.params.destination)
+            req.params.destination = getDestinationCountry[0].id
+        } else {
+            console.log(`ERROR The user searched for a country that does not exist ${req.params.destination}`)
+            // res.status(404)
+            return res.json(`ERROR destination country does not exist`)}
+    }
 
-    const params = {Origin_contry_id: req.params.origin,
-                    Destination_country_id: req.params.destination,
-                    Departure_time: req.params.departure,
-                    Landing_time: req.params.landing}
+    const params = {
+        Origin_contry_id: req.params.origin,
+        Destination_country_id: req.params.destination,
+        Departure_time: req.params.departure,
+        Landing_time: req.params.landing
+    }
 
-    getFlightById(params)
+    getFlightByParams(params)
         .then(async (flight) => {
             if (!flight.length) {
-                console.log(`ERROR There is no flight with this id-`);
-                res.status(404)
-                res.send(`There is no flight with this id-`)
+                console.log(`ERROR Unable to find the flight`);
+                // res.status(404)
+                res.json(`ERROR Unable to find the flight`)
             } else {
                 flight = await flightsTableFixer(flight)
                 console.log(`user get flight`, flight)
@@ -74,7 +91,7 @@ const addFlightController = (req, res) => {
     flight.id = id
     addFlight(flight)
         .then(async (data) => {
-            const newflight = await getFlightById(data[0])
+            const newflight = await getFlightByParams(data[0])
             console.log(`user add flight`, newflight)
             res.json({ messege: "sucsses", newflight: newflight })
         })
@@ -91,7 +108,7 @@ const updateFlightController = async (req, res) => {
             changes.push(changekey, changeValue)
         }
         console.log('user try to update flight with id ', id)
-        const flightBeforeChanges = await getFlightById(id)
+        const flightBeforeChanges = await getFlightByParams(id)
         if (!flightBeforeChanges.length) {
             console.log(`ERROR There is no flight with this id- ${id}`)
             res.status(404)
@@ -99,7 +116,7 @@ const updateFlightController = async (req, res) => {
         }
         updateFlight(id, flight)
             .then(async () => {
-                const flightAfterChanges = await getFlightById(id)
+                const flightAfterChanges = await getFlightByParams(id)
                 console.log('user updated flight ', flightBeforeChanges, ' to ', flightAfterChanges, `changes: ${changes}`)
                 res.json({ messege: "sucsses", flightBeforeChanges, flightAfterChanges, changes })
             })
@@ -114,7 +131,7 @@ const updateFlightController = async (req, res) => {
 const removeFlightController = async (req, res) => {
     try {
         const id = req.params.id
-        const flight = await getFlightById(id)
+        const flight = await getFlightByParams(id)
         removeFlight(id)
             .then(data => {
                 if (data === 0) {
