@@ -9,7 +9,7 @@ const getAllAirlineCompaniesController = (req, res) => {
     getAllAirlineCompanies()
     .then((allAirlineCompanies) => {
         console.log("user get all airline companies")
-        res.json({ messege: "show all airline companies", AirlineCompanies: allAirlineCompanies[0] })
+        res.json(allAirlineCompanies[0])
     })
     .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't show all airline companies") })
 }

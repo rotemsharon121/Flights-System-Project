@@ -1,13 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const path = require('path')
-const { getAllAirlineCompaniesController,
-    getAirlineCompaniesByIdController,
-    addAirlineCompaniesController,
-    updateAirlineCompaniesController,
-    removeAirlineCompaniesController } = require('../controllers/airlineCompaniesControllers')
+// const { getAllAirlineCompaniesController,
+//     getAirlineCompaniesByIdController,
+//     addAirlineCompaniesController,
+//     updateAirlineCompaniesController,
+//     removeAirlineCompaniesController } = require('../controllers/airlineCompaniesControllers')
+
+const airLinesAPI = require("../API/airLinesAPI")
 
 router.use(express.json())
+router.use('/api', airLinesAPI)
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/../views/airlines/all_airlines.html'))
@@ -18,9 +21,9 @@ router.get('/airline_search', (req, res) => {
 
 // router.get('/', async (req, res) => getAllAirlineCompaniesController(req, res))
 
-router.get('/:id', async (req, res) => getAirlineCompaniesByIdController(req, res))
-router.post('/:id', async (req, res) => addAirlineCompaniesController(req, res))
-router.patch('/:id', async (req, res) => updateAirlineCompaniesController(req, res))
-router.delete('/:id', async (req, res) => removeAirlineCompaniesController(req, res))
+// router.get('/:id', async (req, res) => getAirlineCompaniesByIdController(req, res))
+// router.post('/:id', async (req, res) => addAirlineCompaniesController(req, res))
+// router.patch('/:id', async (req, res) => updateAirlineCompaniesController(req, res))
+// router.delete('/:id', async (req, res) => removeAirlineCompaniesController(req, res))
 
 module.exports = router
