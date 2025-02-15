@@ -1,30 +1,48 @@
 const { getAllAirlineCompanies,
-    getAirlineCompaniesById,
+    getAirlineCompaniesByParams,
     addAirlineCompanies,
     updateAirlineCompanies,
     removeAirlineCompanies } = require('../models/airlineCompaniesModel')
+
+const {getCountryById} = require ('../models/countriesModel')
 // const { param } = require('../router/countriesRouter')
+
+const airlinesTableFixer = async (allAirlines) => {
+    for (const airline of allAirlines) {
+        const countryName = await getCountryById(airline.Country_id)
+        airline.Country_id = countryName[0].Name
+    }
+    return allAirlines
+}
 
 const getAllAirlineCompaniesController = (req, res) => {
     getAllAirlineCompanies()
-    .then((allAirlineCompanies) => {
+    .then(async (allAirlineCompanies) => {
+        allAirlineCompanies = await airlinesTableFixer(allAirlineCompanies[0])
         console.log("user get all airline companies")
-        res.json(allAirlineCompanies[0])
+        res.json(allAirlineCompanies)
     })
     .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't show all airline companies") })
 }
-const getAirlineCompaniesByIdController = (req, res) => {
-    const id = req.params.id
-    getAirlineCompaniesById(id)
-    .then((airlineCompany) => {
-        if (!airlineCompany[0].length) {
-            console.log(`ERROR There is no airline company with this id- ${id}`);
-            res.status(404)
-            res.send(`There is no airline company with this id- ${id}`)
-        } else {
-            console.log(`user get airline company`, airlineCompany[0])
-            res.send({ messege: "sucsses", airlineCompany: airlineCompany[0] })
-        }
+
+const getAirlineCompaniesByParamsController = (req, res) => {
+    const listParam = req.params.listParam
+    const searchParam =req.params.searchParam
+    
+    getAirlineCompaniesByParams(listParam, searchParam)
+    .then(async (airlineCompany) => {
+        console.log('user get airLine-', airlineCompany)
+        airlineCompany = await airlinesTableFixer(airlineCompany)
+        res.json(airlineCompany)
+        
+        // if (!airlineCompany[0].length) {
+        //     console.log(`ERROR There is no airline company with this id- ${id}`);
+        //     res.status(404)
+        //     res.send(`There is no airline company with this id- ${id}`)
+        // } else {
+        //     console.log(`user get airline company`, airlineCompany[0])
+        //     res.send({ messege: "sucsses", airlineCompany: airlineCompany[0] })
+        // }
     })
     .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't get the airline company") })
 }
@@ -34,7 +52,7 @@ const addAirlineCompaniesController = (req, res) => {
     airlineCompany.id = id
     addAirlineCompanies(airlineCompany)
     .then(async (data) => {
-        const newAirlineCompany = await getAirlineCompaniesById(data[0].insertId)
+        const newAirlineCompany = await getAirlineCompaniesByParams(data[0].insertId)
         console.log(`user add airline company`, newAirlineCompany[0])
         res.send({ messege: "sucsses", newAirlineCompany: newAirlineCompany[0]})
     })
@@ -44,13 +62,13 @@ const updateAirlineCompaniesController =async (req, res) => {
     try {
         const id = req.params.id
         const changedParameters = req.body
-        getAirlineCompaniesById(id).then(oldAirlineCompany => console.log('user try to update the airline company', oldAirlineCompany[0]))
+        getAirlineCompaniesByParams(id).then(oldAirlineCompany => console.log('user try to update the airline company', oldAirlineCompany[0]))
         for (const changedParametersKey in changedParameters) {
             const changedParametersValue = changedParameters[changedParametersKey]
             const data = await updateAirlineCompanies(id, changedParametersKey, changedParametersValue)
             console.log('update results- ', data[0].info)
         }
-            const updatedAirlineCompany = await getAirlineCompaniesById(id)
+            const updatedAirlineCompany = await getAirlineCompaniesByParams(id)
             console.log('user updated airline company ', updatedAirlineCompany[0], 'changes: ', changedParameters)
             res.json({ messege: "sucsses", changes: changedParameters, airlinecompany: updatedAirlineCompany[0]})
     } catch (error) {
@@ -59,7 +77,7 @@ const updateAirlineCompaniesController =async (req, res) => {
 }
 const removeAirlineCompaniesController = async (req, res) => {
     const id = req.params.id
-    const airlinecompany = await getAirlineCompaniesById(id)
+    const airlinecompany = await getAirlineCompaniesByParams(id)
     console.log('user deleting airline company-', airlinecompany[0][0]);
     removeAirlineCompanies(id)
     .then(data => {
@@ -75,7 +93,7 @@ const removeAirlineCompaniesController = async (req, res) => {
 
 module.exports = {
     getAllAirlineCompaniesController,
-    getAirlineCompaniesByIdController,
+    getAirlineCompaniesByParamsController,
     addAirlineCompaniesController,
     updateAirlineCompaniesController,
     removeAirlineCompaniesController

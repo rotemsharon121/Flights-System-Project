@@ -46,7 +46,7 @@ const getFlightByParamsController = async (req, res) => {
             const getOriginCountry = await getCountryByName(req.params.origin)
             req.params.origin = getOriginCountry[0].id
         } else {
-            console.log(`ERROR The user searched for a country that does not exist ${req.params.origin}`)
+            console.log(`ERROR The user searched for a country that does not exist- ${req.params.origin}`)
             // res.status(404)
             return res.json(`ERROR origin country does not exist`)}
     }
@@ -57,7 +57,7 @@ const getFlightByParamsController = async (req, res) => {
             const getDestinationCountry = await getCountryByName(req.params.destination)
             req.params.destination = getDestinationCountry[0].id
         } else {
-            console.log(`ERROR The user searched for a country that does not exist ${req.params.destination}`)
+            console.log(`ERROR The user searched for a country that does not exist- ${req.params.destination}`)
             // res.status(404)
             return res.json(`ERROR destination country does not exist`)}
     }
@@ -76,8 +76,8 @@ const getFlightByParamsController = async (req, res) => {
                 // res.status(404)
                 res.json(`ERROR Unable to find the flight`)
             } else {
-                flight = await flightsTableFixer(flight)
                 console.log(`user get flight`, flight)
+                flight = await flightsTableFixer(flight)
                 res.json(flight)
             }
         })
