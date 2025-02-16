@@ -46,12 +46,22 @@ const getAirlineCompaniesByParams = async (listParam, searchParam) => {
         const query = `SELECT * FROM airline_companies WHERE ${listParam} = ?`
         const airLine = await (await mysql2Connection).query(query, [searchParam]);
       
-        // console.log(airLine[0][0])
-        return airLine[0] // results contains rows returned by server
+        return airLine[0]
 
       } catch (err) {
         console.log(err);
       }
+
+    // try {
+    //     const query = `SELECT * FROM airline_companies WHERE ${listParam} = '${searchParam}'`
+    //     const airLine = await (await mysql2Connection).query(query);
+      
+    //     console.log(airLine)
+    //     return airLine[0] // results contains rows returned by server
+
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
 
     // const airlineCompany = (await mysql2Connection).query('SELECT * FROM airline_companies WHERE ? = ?', [listParam, searchParam])
     // const airlineCompany = (await mysql2Connection).query('SELECT * FROM airline_companies WHERE Company_name = "Albania Air"')

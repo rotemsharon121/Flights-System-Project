@@ -31,8 +31,12 @@ const getAirlineCompaniesByParamsController = (req, res) => {
     
     getAirlineCompaniesByParams(listParam, searchParam)
     .then(async (airlineCompany) => {
-        console.log('user get airLine-', airlineCompany)
-        airlineCompany = await airlinesTableFixer(airlineCompany)
+        if (airlineCompany.length === 0) {
+            console.log(`ERROR The user searched for an airline that does not exist. `)
+        } else {
+            console.log('user get airLine-', airlineCompany)
+            airlineCompany = await airlinesTableFixer(airlineCompany)
+        }
         res.json(airlineCompany)
         
         // if (!airlineCompany[0].length) {
