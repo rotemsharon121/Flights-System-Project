@@ -4,7 +4,7 @@ const getAllCustomersController = async (req, res) => {
     try {
         const customers = await getAllCustomers()
         console.log("user get all customers");
-        res.json({ messege: "show all customers", customers })
+        res.json(customers)
     } catch (error) {
         console.log(`ERROR ${error}`)
         res.status(500)
