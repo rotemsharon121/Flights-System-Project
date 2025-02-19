@@ -388,3 +388,46 @@ values
 (73, 34, 10), (74, 47, 12), (75, 25, 9), (76, 35, 9), (77, 10, 5), (78, 39, 11), (79, 26, 12), (80, 36, 3), (81, 7, 2), (82, 27, 8),
 (83, 19, 11), (84, 13, 5), (85, 37, 12), (86, 49, 4), (87, 44, 1), (88, 2, 9), (89, 14, 4), (90, 3, 12), (91, 36, 1), (92, 30, 7),
 (93, 50, 3), (94, 49, 8), (95, 26, 9), (96, 41, 10), (97, 3, 4), (98, 37, 9), (99, 9, 11), (100, 21, 7);
+
+ALTER TABLE customers
+ADD Profile_picture varchar(500);
+
+UPDATE customers
+SET Profile_picture = ''
+WHERE id = 0;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 1;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1605993439219-9d09d2020fa5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 2;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 3;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1522228115018-d838bcce5c3a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 4;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1529758146491-1e11fd721f77?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 5;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1521676129211-b7a9e7592e65?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 6;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 7;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1521434029135-f2d8c12cf0c9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 8;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1517702145080-e4a4d91435bb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 9;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1542976187-da56c95669aa?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 10;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1678286742832-26543bb49959?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 11;
+UPDATE customers
+SET Profile_picture = 'https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+WHERE id = 12;
