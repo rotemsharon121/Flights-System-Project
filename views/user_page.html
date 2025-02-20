@@ -73,10 +73,10 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px"
-                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">first name last name</span>
-                    <span class="text-black-50">user name</span>
+                    <img class="rounded-circle mt-5" width="150px" id="profile_img"
+                        src="/public/img/customersIMG/no photo.jpg">
+                    <span class="font-weight-bold" id="full_name">first name last name</span>
+                    <span class="text-black-50" id="profile_user_name">user name</span>
                     <span>is manager?</span>
                 </div>
             </div>
@@ -87,38 +87,39 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <label class="labels">First name</label>
-                            <input type="text" class="form-control" placeholder="first name" value="">
+                            <label class="labels" for="first_name">First name</label>
+                            <input type="text" class="form-control" placeholder="first name" value="" id="first_name">
                         </div>
                         <div class="col-md-6">
-                            <label class="labels">Last name</label>
-                            <input type="text" class="form-control" value="" placeholder="last name">
+                            <label class="labels" for="last_name">Last name</label>
+                            <input type="text" class="form-control" placeholder="last name" value="" id="last_name">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label class="labels">Phone Number</label>
-                            <input type="text" class="form-control" placeholder="enter phone number" value="">
+                            <label class="labels" for="phone_number">Phone Number</label>
+                            <input type="text" class="form-control" placeholder="enter phone number" value="" id="phone_number">
                         </div>
                         <div class="col-md-6">
-                            <label class="labels">Address</label>
-                            <input type="text" class="form-control" placeholder="enter address" value="">
+                            <label class="labels" for="address">Address</label>
+                            <input type="text" class="form-control" placeholder="enter address" value="" id="address">
                         </div>
                         <div class="col-md-6">
-                            <label class="labels">User name</label>
-                            <input type="text" class="form-control" placeholder="user name" value="">
+                            <label class="labels" for="user_name">User name</label>
+                            <input type="text" class="form-control" placeholder="user name" value="" id="user_name">
                         </div>
                         <div class="col-md-6">
-                            <label class="labels">Password</label>
-                            <input type="text" class="form-control" placeholder="password" value="">
+                            <label class="labels" for="password">Password</label>
+                            <input type="text" class="form-control" placeholder="password" value="" id="password">
                         </div>
                         <div class="col-md-6">
-                            <label class="labels">Credit card number</label>
-                            <input type="text" class="form-control" placeholder="credit card number" value="">
+                            <label class="labels" for="Credit card number">Credit card number</label>
+                            <input type="text" class="form-control" placeholder="credit card number" value="" id="Credit card number">
                         </div>
                         <div class="col-md-6">
                             <label class="labels">User ID number</label>
-                            <input type="text" class="form-control" value="User ID number">
+                            <!-- <input type="text" class="form-control" value="User ID number" id="User ID number"> -->
+                            <span class="form-control" id="User ID number">User ID number</span>
                         </div>
                     </div>
                     <div class="mt-5 text-center">
@@ -132,7 +133,7 @@
                         <h4 class="text-right">Your Tickets</h4>
                         <span>Information about purchased tickets</span>
                     </div>
-                    <div class="text-center mt-3">
+                    <div class="text-center mt-3" id = "tickets">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -146,7 +147,7 @@
                                     <th scope="col">remaining tickets</th>
                                 </tr>
                             </thead>
-                            <tbody id="aaa">
+                            <tbody id="tickets-table">
                                 <tr>
                                     <th scope="row" class="table-warning">1</th>
                                     <td class="table-info">1</td>
@@ -212,6 +213,7 @@
 
     <!-- Template Javascript -->
     <script src="/public/js/main.js"></script>
+    <script src="/public/js/userDataHandler.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

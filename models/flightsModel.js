@@ -46,6 +46,11 @@ const getFlightByParams = (params) => {
     return flight
 }
 
+const getFlightById = (id) => {
+    const flight = knex.select('*').from('flights').where('id', id)
+    return flight
+}
+
 const addFlight = (flight) => {
     const newflight = knex('flights').insert(flight)
     return newflight
@@ -63,6 +68,7 @@ const removeFlight = (id) => {
 module.exports = {
     getAllFlights,
     getFlightByParams,
+    getFlightById,
     addFlight,
     updateFlight,
     removeFlight

@@ -1,4 +1,6 @@
 const { getAllCustomers, getCustomerById, addCustomer, updateCustomer, removeCustomer } = require('../models/customersModel')
+const { getTicketByCustomerId } = require('../models/ticketsModel')
+const { getFlightById } = require('../models/flightsModel')
 
 const getAllCustomersController = async (req, res) => {
     try {
@@ -16,12 +18,13 @@ const getCustomerByIdController = async (req, res) => {
     try {
         const id = req.params.id
         const customer = await getCustomerById(id)
+        const tickets = await getTicketByCustomerId(id)
         if (!customer.length) {
             res.status(404)
             return res.json({ NotFound: "There is no customer with this id", id })
         }
         console.log(`user get customer`, customer)
-        res.json({ messege: "sucsses", customer })
+        res.json({customer : customer[0], tickets : tickets})
     } catch (error) {
         console.log(`ERROR ${error}`)
         res.status(500)

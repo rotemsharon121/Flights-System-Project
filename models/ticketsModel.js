@@ -10,6 +10,11 @@ const getTicketById = (id) => {
     return ticket
 }
 
+const getTicketByCustomerId = (id) => {
+    const ticket = knex.select('*').from('tickets').where('Customer_id', id)
+    return ticket
+}
+
 const addTicket = (ticket) => {
     const newTicket = knex('tickets').insert(ticket)
     return newTicket
@@ -27,6 +32,7 @@ const removeTicket = (id) => {
 module.exports = {
     getAllTickets,
     getTicketById,
+    getTicketByCustomerId,
     addTicket,
     updateTicket,
     removeTicket

@@ -1,5 +1,6 @@
 const { getAllFlights,
     getFlightByParams,
+    getFlightById,
     addFlight,
     updateFlight,
     removeFlight } = require('../models/flightsModel')
@@ -84,6 +85,23 @@ const getFlightByParamsController = async (req, res) => {
         .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't get the flight") })
 }
 
+const getFlightByIdController = (req, res) => {
+    const id = req.params.id
+    getFlightById(id)
+        .then(async (flight) => {
+            if (!flight.length) {
+                console.log(`ERROR There is no flight with this id- ${id}`);
+                res.status(404)
+                res.send(`There is no flight with this id- ${id}`)
+            } else {
+                // console.log(`user get flight`, flight)
+                flight = await flightsTableFixer(flight)
+                res.json(flight[0])
+            }
+        })
+        .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't get the flight") })
+}
+
 
 const addFlightController = (req, res) => {
     const id = req.params.id
@@ -151,6 +169,7 @@ const removeFlightController = async (req, res) => {
 module.exports = {
     getAllFlightsController,
     getFlightByParamsController,
+    getFlightByIdController,
     addFlightController,
     updateFlightController,
     removeFlightController
