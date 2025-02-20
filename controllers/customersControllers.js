@@ -5,7 +5,7 @@ const { getFlightById } = require('../models/flightsModel')
 const getAllCustomersController = async (req, res) => {
     try {
         const customers = await getAllCustomers()
-        console.log("user get all customers");
+        // console.log("user get all customers");
         res.json(customers)
     } catch (error) {
         console.log(`ERROR ${error}`)
