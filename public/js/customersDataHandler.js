@@ -9,6 +9,9 @@
                 allCustomers.innerHTML =
                     `<div class="col-lg-10 text-center mx-auto">
                         <h3 class="text-danger">an error occurred, can't show all customers</h3>`
+                login.innerHTML =
+                    `<div class="col-lg-10 text-center mx-auto">
+                        <h3 class="text-danger">an error occurred, can't show all customers</h3>`
             }
             if (document.getElementById('login')) {
                 data.forEach(customer => {

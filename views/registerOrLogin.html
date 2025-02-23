@@ -58,7 +58,8 @@
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
                         <h1 class="text-primary">Register or Login</h1>
                         <p class="fs-4 text-white mb-4 animated slideInDown">
-                            in this page the user can login with customer that exist in the database or register a new costumer
+                            in this page the user can login with customer that exist in the database or register a new
+                            costumer
                             The new customer will be added to the database.
                         </p>
                     </div>
@@ -83,14 +84,19 @@
                                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                                 <div class="mb-5">
                                                     <div class="d-flex justify-content-center mb-4">
-                                                        <img id="selectedImg" src="/public/img/customersIMG/no photo.jpg"
-                                                        class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;" alt="profile picture" />
+                                                        <img id="selectedImg"
+                                                            src="/public/img/customersIMG/no photo.jpg"
+                                                            class="rounded-circle"
+                                                            style="width: 200px; height: 200px; object-fit: cover;"
+                                                            alt="profile picture" />
                                                     </div>
                                                     <div class="d-flex justify-content-center">
                                                         <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
-                                                            <label class="form-label text-white m-1" for="profilePicture">add photo</label>
-                                                            <input type="file" accept="image/*" class="form-control d-none" id="profilePicture"
-                                                             onchange="displaySelectedImage(event, 'selectedImg')" />
+                                                            <label class="form-label text-white m-1"
+                                                                for="profilePicture">add photo</label>
+                                                            <input type="file" accept="image/*"
+                                                                class="form-control d-none" id="profilePicture"
+                                                                onchange="displaySelectedImage(event, 'selectedImg')" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,34 +114,47 @@
                                             <div class="p-3 py-5">
                                                 <div class="row mt-2">
                                                     <div class="col-md-6">
-                                                        <label class="labels mb-2 fs-5" for="first_name">First name</label>
-                                                        <input type="text" class="form-control" placeholder="first name" value="" id="first_name">
+                                                        <label class="labels mb-2 fs-5" for="first_name">First
+                                                            name</label>
+                                                        <input type="text" class="form-control" placeholder="first name"
+                                                            value="" id="first_name">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="labels mb-2 fs-5" for="last_name">Last name</label>
-                                                        <input type="text" class="form-control" placeholder="last name" value="" id="last_name">
+                                                        <label class="labels mb-2 fs-5" for="last_name">Last
+                                                            name</label>
+                                                        <input type="text" class="form-control" placeholder="last name"
+                                                            value="" id="last_name">
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="col-md-6">
-                                                        <label class="labels mb-2 fs-5" for="phone_number">Phone Number</label>
-                                                        <input type="text" class="form-control" placeholder="enter phone number" value="" id="phone_number">
+                                                        <label class="labels mb-2 fs-5" for="phone_number">Phone
+                                                            Number</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="enter phone number" value="" id="phone_number">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="labels mb-2 fs-5" for="address">Address</label>
-                                                        <input type="text" class="form-control" placeholder="enter address" value="" id="address">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="enter address" value="" id="address">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="labels mb-2 fs-5" for="user_name">User name</label>
-                                                        <input type="text" class="form-control" placeholder="user name" value="" id="user_name">
+                                                        <label class="labels mb-2 fs-5" for="user_name">User
+                                                            name</label>
+                                                        <input type="text" class="form-control" placeholder="user name"
+                                                            value="" id="user_name">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="labels mb-2 fs-5" for="password">Password</label>
-                                                        <input type="text" class="form-control" placeholder="password" value="" id="password">
+                                                        <input type="text" class="form-control" placeholder="password"
+                                                            value="" id="password">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="labels mb-2 fs-5" for="Credit card number">Credit card number</label>
-                                                        <input type="text" class="form-control" placeholder="credit card number" value="" id="Credit card number">
+                                                        <label class="labels mb-2 fs-5" for="Credit card number">Credit
+                                                            card number</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="credit card number" value=""
+                                                            id="Credit card number">
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,16 +168,19 @@
                 </div>
                 <h2 class="section-title bg-white text-center text-primary px-3">Login</h2>
                 <div class="row g-4" id="login">
-                    <!-- <div class="col-sm-6 col-md-4 col-lg-3 ">
-                            <img src="/public/img/customersIMG/no photo.jpg" class="card-img-top rounded-circle mt-5" alt="random person">
+                    <button>
+                        <div class="col-sm-6 col-md-4 col-lg-3 ">
+                            <img src="/public/img/customersIMG/no photo.jpg" class="card-img-top rounded-circle mt-5"
+                                alt="random person">
                             <div class="card-body">
                                 <h5 class="card-title">user name</h5>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">first name, last name</li>
                             </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 ">
+                        </div>
+                    </button>
+                    <!-- <div class="col-sm-6 col-md-4 col-lg-3 ">
                             <img src="/public/img/customersIMG/no photo.jpg" class="card-img-top rounded-circle mt-5" alt="random person">
                             <div class="card-body">
                                 <h5 class="card-title">user name</h5>
@@ -222,7 +244,6 @@
                             </ul>
                     </div> -->
                 </div>
-
             </div>
         </div>
     </div>
