@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const userId = 1
+    const userId = document.cookie.split('=')[1]
 
     fetch(`http://localhost:3000/customers/api/${userId}`)
         .then(response => response.json())
