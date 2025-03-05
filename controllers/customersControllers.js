@@ -36,6 +36,9 @@ const getCustomerByIdController = async (req, res) => {
 const addCustomerController = async (req, res) => { 
     try {
         const customer = req.body
+        if (req.file) {
+            customer.Profile_picture = req.file.filename
+        }
         const newCustomerId = await addCustomer(customer)
         getCustomerById(newCustomerId[0])
             .then((newCustomer) => {
@@ -48,9 +51,9 @@ const addCustomerController = async (req, res) => {
                 res.json("ERROR")
             })
     } catch (error) {
-        console.log(`ERROR ${error}`)
-        res.status(500)
-        res.json("An error occurred, can't added the customer")
+        console.log(`ERROR in add customer controller ${error}`)
+        // res.status(500)
+        res.json({ message: "An error occurred, can't added the customer", error })
     }
 }
 

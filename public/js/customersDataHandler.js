@@ -13,7 +13,7 @@ fetch('http://localhost:3000/customers/api/allCustomers')
             row.className = 'col-sm-6 col-md-4 col-lg-3'
             row.innerHTML = `
                         <div class="card">
-                            <img src=${customer.Profile_picture} class="card-img-top" alt="random person">
+                            <img src=/public/img/customersIMG/${customer.Profile_picture} class="card-img-top" alt="random person">
                             <div class="card-body">
                                 <h5 class="card-title">${customer.First_name}</h5>
                                 <h5 class="card-title">${customer.Last_name}</h5>

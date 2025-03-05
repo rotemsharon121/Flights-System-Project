@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('password').value = customerData.User_password
                 document.getElementById('Credit card number').value = customerData.Credit_card_number
                 document.getElementById('User ID number').textContent = customerData.id
-                document.getElementById('profile_img').src = customerData.Profile_picture
+                // document.getElementById('profile_img').src = customerData.Profile_picture
+                document.getElementById('profile_img').src = `/public/img/customersIMG/${customerData.Profile_picture}`
     
                 tickets.innerHTML =
                     `<table class="table table-bordered">
