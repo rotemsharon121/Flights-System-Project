@@ -2,6 +2,7 @@ const { getAllCustomers, getCustomerById, addCustomer, updateCustomer, removeCus
 const { getTicketByCustomerId } = require('../models/ticketsModel')
 const { getFlightById } = require('../models/flightsModel')
 
+
 const getAllCustomersController = async (req, res) => {
     try {
         const customers = await getAllCustomers()
@@ -32,14 +33,14 @@ const getCustomerByIdController = async (req, res) => {
     }
 }
 
-const addCustomerController = async (req, res) => {
+const addCustomerController = async (req, res) => { 
     try {
         const customer = req.body
         const newCustomerId = await addCustomer(customer)
         getCustomerById(newCustomerId[0])
             .then((newCustomer) => {
                 console.log("new customr added to customers table: ", newCustomer[0])
-                res.json({ message: "new customr added", customer: newCustomer[0] })
+                res.json(newCustomer[0])
             })
             .catch(error => {
                 console.log(`ERROR ${error}`)

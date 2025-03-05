@@ -78,7 +78,7 @@
                         <div class="card">
                             <h2 class="section-title bg-white text-center text-primary px-3">Register</h2>
                             <div class="card-body">
-                                <form action="/register" method="POST">
+                                <form id="register-form" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-3 border-right">
                                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -94,9 +94,8 @@
                                                         <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
                                                             <label class="form-label text-white m-1"
                                                                 for="profilePicture">add photo</label>
-                                                            <input type="file" accept="image/*"
-                                                                class="form-control d-none" id="profilePicture"
-                                                                onchange="displaySelectedImage(event, 'selectedImg')" />
+                                                            <input type="file" accept="image/*" name="profilePicture"
+                                                                class="form-control d-none" id="profilePicture"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -160,7 +159,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-3">Register</button>
+                                    <button type="submit" class="btn btn-primary mt-3" id="register-btn">Register</button>
                                 </form>
                             </div>
                         </div>
