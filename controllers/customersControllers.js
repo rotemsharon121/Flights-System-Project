@@ -77,10 +77,10 @@ const addCustomerController = async (req, res) => {
 const updateCustomerController = async (req, res) => {
     const id = req.params.id
     const customer = req.body
-    const changedParameters = []
-    for (const parameter in customer) {
-        changedParameters.push(parameter, customer[parameter])
-    }
+    // const changedParameters = []
+    // for (const parameter in customer) {
+    //     changedParameters.push(parameter, customer[parameter])
+    // }
     const oldCustomr = await getCustomerById(id)
     if (!oldCustomr.length) {
         console.log(`cant update, customer does not exist id- ${id}`)
@@ -91,8 +91,8 @@ const updateCustomerController = async (req, res) => {
     updateCustomer(id, customer)
         .then(async () => {
             const newCustomer = await getCustomerById(id)
-            console.log("sucsses to update ", newCustomer, changedParameters)
-            res.json({ message: "sucsses update", changedParameters, oldCustomr, newCustomer })
+            console.log("sucsses to update ", newCustomer)
+            res.json({ message: "sucsses update", oldCustomr, newCustomer })
         })
         .catch(error => { console.log("error! faild to update- ", error); res.status(500); res.json("An error occurred, can't update the customer") })
 }
@@ -105,7 +105,7 @@ const removeCustomerController = (req, res) => {
             console.log(`customer not exist id- ${id}`)
             return res.json({messege: `customer with id ${id} not exist`})
         }
-        console.log("customer deleted id- ", id)
+        console.log("user deleted customer with id- ", id)
         res.json({messege: `customer with id ${id} deleted`})
     })
     .catch(error => { console.log("error! faild to delete- ", error); res.status(500); res.json("An error occurred, can't delete the customer") })

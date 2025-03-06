@@ -1,6 +1,7 @@
+const userId = document.cookie.split('=')[1]
+
 document.addEventListener('DOMContentLoaded', () => {
-    const userId = document.cookie.split('=')[1]
-    
+
     if (!userId) {
         document.getElementById('changeProfileButton').innerHTML = `No user logged in`
     } else {
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // console.log(data.tickets)
                 const customerData = data.customer
                 const ticketsData = data.tickets
-    
+
                 const firstName = document.getElementById('first_name').value = customerData.First_name
                 // firstName.value = customerData.First_name
                 const lastName = document.getElementById('last_name').value = customerData.Last_name
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('User ID number').textContent = customerData.id
                 // document.getElementById('profile_img').src = customerData.Profile_picture
                 document.getElementById('profile_img').src = `/public/img/customersIMG/${customerData.Profile_picture}`
-    
+
                 tickets.innerHTML =
                     `<table class="table table-bordered">
                                 <thead>
@@ -47,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <tbody id="tickets-table">
                         </tbody>
                         </table>`
-    
+
                 ticketsData.forEach(ticket => {
                     fetch(`http://localhost:3000/flights/api/${ticket.Flight_id}`)
                         .then(response => response.json())
                         .then(flightData => {
                             // console.log(flightData)
                             const ticketsTable = document.getElementById('tickets-table')
-    
+
                             const row = document.createElement('tr')
                             row.innerHTML =
                                 `<th scope='row' class="table-warning">${ticket.id}</th>
@@ -66,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${flightData.Landing_time}</td>
                             <td>${flightData.Remaining_tickets}</td>`
                             ticketsTable.appendChild(row)
-    
+
                         })
                 })
-    
-    
+
+
                 // } else {
                 //     console.error('No data found for the user.');
                 // }
@@ -78,4 +79,46 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching user data:', error));
     }
 
+})
+
+
+const updateButton = document.getElementById('saveProfile')
+updateButton.addEventListener('click', () => {
+    fetch(`http://localhost:3000/customers/api/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            First_name: document.getElementById('first_name').value,
+            Last_name: document.getElementById('last_name').value,
+            Address: document.getElementById('address').value,
+            Phone_number: document.getElementById('phone_number').value,
+            Credit_card_number: document.getElementById('Credit card number').value,
+            User_name: document.getElementById('user_name').value,
+            User_password: document.getElementById('password').value
+        })
+        
+    })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data)
+            window.location.reload()
+        })
+})
+
+const deleteButton = document.getElementById('deleteProfile')
+deleteButton.addEventListener('click', () => {
+    fetch(`http://localhost:3000/customers/api/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.cookie = `customer=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+            window.location.href = '/registerOrLogin'
+        })
 })
