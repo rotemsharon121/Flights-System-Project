@@ -2,6 +2,7 @@ const { getAllCustomers, getCustomerById, addCustomer, updateCustomer, removeCus
 const { getTicketByCustomerId } = require('../models/ticketsModel')
 const { getFlightById } = require('../models/flightsModel')
 const path = require('path')
+const fs = require('fs')
 
 // use multer to upload user profile picture on registration
 const multer  = require('multer')
@@ -97,20 +98,49 @@ const updateCustomerController = async (req, res) => {
         .catch(error => { console.log("error! faild to update- ", error); res.status(500); res.json("An error occurred, can't update the customer") })
 }
 
-const removeCustomerController = (req, res) => {
+const removeCustomerController = async (req, res) => {
     const id = req.params.id
-    removeCustomer(id)
-    .then((data)=>{
-        if (data === 0) {
+    try {
+        const customer = await getCustomerById(id)
+        if (!customer.length) {
             console.log(`customer not exist id- ${id}`)
-            return res.json({messege: `customer with id ${id} not exist`})
+            return res.json({ message: `customer with id ${id} not exist` })
         }
-        console.log("user deleted customer with id- ", id)
-        res.json({messege: `customer with id ${id} deleted`})
-    })
-    .catch(error => { console.log("error! faild to delete- ", error); res.status(500); res.json("An error occurred, can't delete the customer") })
-}
 
+        const profilePicture = customer[0].Profile_picture
+        removeCustomer(id)
+            .then((data) => {
+                if (data === 0) {
+                    console.log(`customer not exist id- ${id}`)
+                    return res.json({ message: `customer with id ${id} not exist` })
+                }
+
+                // מחיקת תמונת הלקוח מהתיקייה
+                if (profilePicture) {
+                    const filePath = path.join(__dirname, '../public/img/customersIMG', profilePicture)
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.error(`Failed to delete profile picture: ${err}`)
+                        } else {
+                            console.log(`Profile picture deleted: ${filePath}`)
+                        }
+                    })
+                }
+
+                console.log("user deleted customer with id- ", id)
+                res.json({ message: `customer with id ${id} deleted` })
+            })
+            .catch(error => {
+                console.log("error! failed to delete- ", error)
+                res.status(500)
+                res.json("An error occurred, can't delete the customer")
+            })
+    } catch (error) {
+        console.log("error! failed to delete- ", error)
+        res.status(500)
+        res.json("An error occurred, can't delete the customer")
+    }
+}
 
 module.exports = {
     getAllCustomersController,
