@@ -1,7 +1,18 @@
 const { getAllCustomers, getCustomerById, addCustomer, updateCustomer, removeCustomer } = require('../models/customersModel')
 const { getTicketByCustomerId } = require('../models/ticketsModel')
 const { getFlightById } = require('../models/flightsModel')
+const path = require('path')
 
+// use multer to upload user profile picture on registration
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+    destination: 'public/img/customersIMG/',
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage})
 
 const getAllCustomersController = async (req, res) => {
     try {
@@ -24,7 +35,7 @@ const getCustomerByIdController = async (req, res) => {
             res.status(404)
             return res.json({ NotFound: "There is no customer with this id", id })
         }
-        console.log(`user get customer`, customer)
+        // console.log(`user get customer`, customer)
         res.json({customer : customer[0], tickets : tickets})
     } catch (error) {
         console.log(`ERROR ${error}`)
@@ -34,6 +45,11 @@ const getCustomerByIdController = async (req, res) => {
 }
 
 const addCustomerController = async (req, res) => { 
+    upload.single('Profile_picture')(req, res, async (err) => {
+        if (err) {
+            console.log(`ERROR in file upload ${err}`)
+            return res.status(500).json({ message: "An error occurred during file upload", error: err })
+        }
     try {
         const customer = req.body
         if (req.file) {
@@ -55,6 +71,7 @@ const addCustomerController = async (req, res) => {
         // res.status(500)
         res.json({ message: "An error occurred, can't added the customer", error })
     }
+    })
 }
 
 const updateCustomerController = async (req, res) => {

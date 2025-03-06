@@ -57,10 +57,10 @@ function displaySelectedImage(event, elementId) {
     }
 }
 
-
 document.getElementById('profilePicture').addEventListener('change', (event) => {
     displaySelectedImage(event, 'selectedImg')
 })
+
 
 document.getElementById('register-form').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -91,7 +91,7 @@ document.getElementById('register-form').addEventListener('submit', (event) => {
         formData.append('Profile_picture', profilePicture)
     }
     else {
-        formData.append('Profile_picture', 'no photo.jpg')
+        formData.append('Profile_picture', 'no-photo.jpg')
     }
 
     fetch('http://localhost:3000/customers/api/newCustomer', {
