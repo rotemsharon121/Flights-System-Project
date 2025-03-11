@@ -1,3 +1,6 @@
+const customerCookie = document.cookie.includes('customer')
+const customerId = document.cookie.split('=')[1]
+
 if (document.getElementById('allFlightsTable')) {
     const allFlights = document.getElementById('allFlightsTable')
 
@@ -25,8 +28,41 @@ if (document.getElementById('allFlightsTable')) {
                     <td>${flight.Destination_country_id}</td>
                     <td>${flight.Departure_time}</td>
                     <td>${flight.Landing_time}</td>
-                    <td>${flight.Remaining_tickets}</td>
-                    <td><button class="btn btn-primary btn-rounded">Buy</button></td>`
+                    <td>${flight.Remaining_tickets}</td>`
+                    if (customerCookie) {
+                        if (flight.Remaining_tickets < 1) {
+                            row.innerHTML += `<td>no more tickets</td>`
+                        } else {
+                            row.innerHTML += `<td><button id="buyTicketBtn" class="btn btn-primary btn-rounded">Buy</button></td>`
+                            row.querySelector('#buyTicketBtn') .addEventListener('click', () => {
+                                fetch(`http://localhost:3000/tickets/api/newTicket`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': document.cookie
+                                    },
+                                    body: JSON.stringify({
+                                        "Customer_Id": customerId,
+                                        "Flight_Id": flight.id,
+                                        "Remaining_tickets": flight.Remaining_tickets - 1
+                                    })
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.messege === 'sucsses') {
+                                            //need to update the remaining tickets
+                                            window.location.reload()
+                                            alert('ticket was purchased successfully')
+                                        } else {
+                                            alert('ticket was not purchased')
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error)
+                                    })
+                            })
+                        }
+        }
                     allFlights.appendChild(row)
                 })
             }
@@ -105,8 +141,41 @@ if (document.getElementById('flight-form')) {
                                 <td>${flight.Destination_country_id}</td>
                                 <td>${flight.Departure_time}</td>
                                 <td>${flight.Landing_time}</td>
-                                <td>${flight.Remaining_tickets}</td>
-                                <td><button class="btn btn-primary btn-rounded">Buy Ticket</button></td>`
+                                <td>${flight.Remaining_tickets}</td>`
+                                if (customerCookie) {
+                                    if (flight.Remaining_tickets < 1) {
+                                        row.innerHTML += `<td>no more tickets</td>`
+                                    } else {
+                                        row.innerHTML += `<td><button id="buyTicketBtn" class="btn btn-primary btn-rounded">Buy ticket</button></td>`
+                                        row.querySelector('#buyTicketBtn') .addEventListener('click', () => {
+                                            fetch(`http://localhost:3000/tickets/api/newTicket`, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'Authorization': document.cookie
+                                                },
+                                                body: JSON.stringify({
+                                                    "Customer_Id": customerId,
+                                                    "Flight_Id": flight.id,
+                                                    "Remaining_tickets": flight.Remaining_tickets - 1
+                                                })
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    if (data.messege === 'sucsses') {
+                                                        //need to update the remaining tickets
+                                                        window.location.reload()
+                                                        alert('ticket was purchased successfully')
+                                                    } else {
+                                                        alert('ticket was not purchased')
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error:', error)
+                                                })
+                                        })
+                                    }
+                    }
                                 FlightsSearch.appendChild(row)
                             })
                             break;

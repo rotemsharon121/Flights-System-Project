@@ -65,8 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${flightData.Destination_country_id}</td>
                             <td>${flightData.Departure_time}</td>
                             <td>${flightData.Landing_time}</td>
-                            <td>${flightData.Remaining_tickets}</td>`
+                            <td>${flightData.Remaining_tickets}</td>
+                            <td><button class="btn btn-danger btn-rounded" id="deleteTicketBtn">delete ticket</button></td>`
                             ticketsTable.appendChild(row)
+                            row.querySelector('#deleteTicketBtn').addEventListener('click', () => {
+                                fetch(`http://localhost:3000/tickets/api/${ticket.id}&${flightData.id}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        console.log(data)
+                                        window.location.reload()
+                                    })
+                                    .catch(error => console.error('Error deleting ticket:', error))
+                            })
 
                         })
                 })

@@ -4,6 +4,8 @@ const { getAllTickets,
     updateTicket,
     removeTicket } = require('../models/ticketsModel')
 
+const { updateFlight, getFlightById } = require('../models/flightsModel')
+
 const getAllTicketsController = (req, res) => {
     getAllTickets()
         .then((allTickets) => {
@@ -30,11 +32,16 @@ const getTicketByIdController = (req, res) => {
 }
 
 const addTicketController = (req, res) => {
-    const id = req.params.id
+    // const id = req.params.id
     const ticket = req.body
-    ticket.id = id
+    const remainingTickets = { Remaining_tickets: ticket.Remaining_tickets }
+    delete ticket.Remaining_tickets
+    
+    
+    // ticket.id = id
     addTicket(ticket)
         .then(async (data) => {
+            await updateFlight(ticket.Flight_Id, remainingTickets)
             const newTicket = await getTicketById(data[0])
             console.log(`user add ticket`, newTicket)
             res.json({ messege: "sucsses", newTicket: newTicket })
@@ -74,21 +81,30 @@ const updateTicketController = async (req, res) => {
 
 const removeTicketController = async (req, res) => {
     try {
-        const id = req.params.id
-        const ticket = await getTicketById(id)
-        removeTicket(id)
-            .then(data => {
+        const ticketId = req.params.ticketId
+        const flightId = req.params.flightId
+        const flight = await getFlightById(flightId)
+        const ticket = await getTicketById(ticketId)
+        removeTicket(ticketId)
+            .then(async data => {
                 if (data === 0) {
-                    console.log(`user try to deleted ticket with id ${id} but it not exist`)
+                    console.log(`user tried to delete ticket with ticketId ${ticketId} but it does not exist`)
                     res.status(404)
-                    return res.json({ messege: `ticket with id ${id} not exist` })
+                    return res.json({ message: `ticket with ticketId ${ticketId} does not exist` })
                 }
-                console.log(`ticket with id ${id} has deleted`, ticket)
-                res.json({ messege: `ticket with id ${id} deleted`, ticket })
+                await updateFlight(flightId, { Remaining_tickets: flight[0].Remaining_tickets + 1 })
+                console.log(`ticket with ticketId ${ticketId} has been deleted`, ticket)
+                res.json({ message: `ticket with ticketId ${ticketId} deleted`, ticket })
             })
-            .catch(error => { console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't delete the ticket") })
+            .catch(error => {
+                console.log(`ERROR ${error}`)
+                res.status(500)
+                res.json("an error occurred, can't delete the ticket")
+            })
     } catch (error) {
-        console.log(`ERROR ${error}`); res.status(500); res.json("an error occurred, can't delete the ticket")
+        console.log(`ERROR ${error}`)
+        res.status(500)
+        res.json("an error occurred, can't delete the ticket")
     }
 }
 

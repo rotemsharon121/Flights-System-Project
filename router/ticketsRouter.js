@@ -6,13 +6,16 @@ const { getAllTicketsController,
     updateTicketController,
     removeTicketController } = require('../controllers/ticketsControllers')
 
+const ticketsAPI = require("../API/ticketsAPI")
+
 router.use(express.json())
+router.use('/api', ticketsAPI)
 
 router.get('/', async (req, res) => getAllTicketsController(req, res))
 
-router.get('/:id', async (req, res) => getTicketByIdController(req, res))
-    .post('/:id', async (req, res) => addTicketController(req, res))
-    .patch('/:id', async (req, res) => updateTicketController(req, res))
-    .delete('/:id', async (req, res) => removeTicketController(req, res))
+// router.get('/:id', async (req, res) => getTicketByIdController(req, res))
+//     .post('/:id', async (req, res) => addTicketController(req, res))
+//     .patch('/:id', async (req, res) => updateTicketController(req, res))
+//     .delete('/:id', async (req, res) => removeTicketController(req, res))
 
 module.exports = router
