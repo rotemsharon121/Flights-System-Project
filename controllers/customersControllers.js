@@ -114,9 +114,9 @@ const removeCustomerController = async (req, res) => {
                     console.log(`customer not exist id- ${id}`)
                     return res.json({ message: `customer with id ${id} not exist` })
                 }
-
-                // מחיקת תמונת הלקוח מהתיקייה
-                if (profilePicture) {
+                
+                // Delete the customer's profile picture from the folder
+                if (profilePicture !== 'no-photo.jpg') {
                     const filePath = path.join(__dirname, '../public/img/customersIMG', profilePicture)
                     fs.unlink(filePath, (err) => {
                         if (err) {
@@ -136,7 +136,7 @@ const removeCustomerController = async (req, res) => {
                 res.json("An error occurred, can't delete the customer")
             })
     } catch (error) {
-        console.log("error! failed to delete- ", error)
+        console.log("error! failed to delete", error)
         res.status(500)
         res.json("An error occurred, can't delete the customer")
     }

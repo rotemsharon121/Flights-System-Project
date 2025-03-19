@@ -130,10 +130,20 @@ deleteButton.addEventListener('click', () => {
             'Content-Type': 'application/json'
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 500) {
+                throw new Error('Error deleting user')
+            }
+            return response.json()
+        })
         .then(data => {
-            console.log(data)
+            // console.log(data)
             document.cookie = `customer=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
             window.location.href = '/registerOrLogin'
+        })
+        .catch(error => {
+            console.error('Error deleting user:', error)
+            document.getElementById('profile-error').textContent =
+             'Error deleting user please make sure to delete all tickets before deleting the user'
         })
 })
