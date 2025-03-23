@@ -22,6 +22,7 @@ app.use('/about', aboutRouter)
 
 // app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/public",express.static(__dirname + "/public"));
+app.use("/config",express.static(__dirname + "/config"));
 
 
 app.get('/', (req, res) => {
