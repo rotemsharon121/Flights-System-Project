@@ -1,4 +1,4 @@
-### Instructions for Running the Flights System Project - Tests  
+### Instructions for Running the Flights System Project 
 
 1. **Install Dependencies:**  
    Run the following command:  
